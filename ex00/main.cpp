@@ -6,7 +6,7 @@
 /*   By: nlewicki <nlewicki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 10:27:22 by nlewicki          #+#    #+#             */
-/*   Updated: 2025/02/26 10:59:17 by nlewicki         ###   ########.fr       */
+/*   Updated: 2025/06/03 13:16:21 by nlewicki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,20 @@ int main(void)
 	Bureaucrat b7("b7", 2);
 	Bureaucrat b8("b8", 149);
 	Bureaucrat b9("b9", 150);
+
+	try {
+		Bureaucrat invalid("invalid", 151);
+		std::cout << invalid << std::endl;
+	} catch(const std::exception &e) {
+		std::cerr << "Constructor failed: " << e.what() << std::endl;
+	}
+
+	try {
+		Bureaucrat invalid("invalid", 0);
+		std::cout << invalid << std::endl;
+	} catch(const std::exception &e) {
+		std::cerr << "Constructor failed: " << e.what() << std::endl;
+	}
 
 	try {
 		b1.decrementGrade();
@@ -68,8 +82,9 @@ int main(void)
 
 	try {
 		b8.incrementGrade();
+		std::cout << "SUCCESS: " << b8 << std::endl;
 	} catch(const std::exception &test) {
-		std::cerr << test.what() << '\n';
+		std::cerr << "EXCEPTION: " << test.what() << " - " << b8 << std::endl;
 	}
 
 	try {
